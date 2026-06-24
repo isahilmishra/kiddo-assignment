@@ -39,7 +39,7 @@ const ProductCardComponent: React.FC<Props> = ({ product }) => {
         ) : (
           <TouchableOpacity 
             style={[styles.button, { backgroundColor: theme.primary }]}
-            onPress={() => handleAction(product.action, product)}
+            onPress={() => handleAction({ ...product.action!, payload: { ...product.action?.payload, product } })}
           >
             <Text style={styles.buttonText}>Add to Cart</Text>
           </TouchableOpacity>
@@ -55,76 +55,81 @@ export const ProductCard = memo(ProductCardComponent, (prevProps, nextProps) => 
 
 const styles = StyleSheet.create({
   card: {
-    width: 160,
-    borderRadius: 16,
-    margin: 8,
+    width: 170,
+    borderRadius: 20,
+    marginHorizontal: 10,
+    marginVertical: 12,
     shadowColor: '#000',
-    shadowOpacity: 0.08,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 3,
+    shadowOpacity: 0.06,
+    shadowRadius: 15,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 4,
     overflow: 'hidden',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: 'rgba(0,0,0,0.02)',
   },
   image: {
     width: '100%',
-    height: 140,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
+    height: 150,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
   },
   infoContainer: {
-    padding: 10,
-    paddingBottom: 4,
+    padding: 14,
+    paddingBottom: 8,
   },
   name: {
-    fontSize: 14,
-    fontWeight: '600',
-    marginBottom: 4,
-    letterSpacing: -0.3,
-  },
-  price: {
     fontSize: 15,
     fontWeight: '700',
+    marginBottom: 6,
+    letterSpacing: -0.4,
+  },
+  price: {
+    fontSize: 16,
+    fontWeight: '800',
   },
   actionContainer: {
-    padding: 10,
-    paddingTop: 6,
+    padding: 14,
+    paddingTop: 8,
   },
   quantityContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#f5f5f5',
-    borderRadius: 8,
-    padding: 2,
+    backgroundColor: '#f8f9fa',
+    borderRadius: 12,
+    padding: 4,
   },
   qtyBtn: {
-    width: 28,
-    height: 28,
-    borderRadius: 6,
+    width: 32,
+    height: 32,
+    borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
     borderColor: 'transparent',
   },
   qtyBtnText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 18,
+    fontWeight: '800',
   },
   quantityText: {
-    fontSize: 14,
-    fontWeight: '600',
-    minWidth: 20,
+    fontSize: 15,
+    fontWeight: '700',
+    minWidth: 24,
     textAlign: 'center',
   },
   button: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 12,
     alignItems: 'center',
   },
   buttonText: {
     color: '#fff',
-    fontSize: 13,
-    fontWeight: '700',
+    fontSize: 14,
+    fontWeight: '800',
+    letterSpacing: -0.2,
   },
 });

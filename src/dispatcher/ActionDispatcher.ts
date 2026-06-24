@@ -11,13 +11,13 @@ const showAlert = (title: string, message: string) => {
   }
 };
 
-export const handleAction = (action?: ActionSchema, node?: any) => {
+export const handleAction = (action?: ActionSchema) => {
   if (!action) return;
 
   switch (action.type) {
     case 'ADD_TO_CART':
-      if (node) {
-        useCartStore.getState().increment(node);
+      if (action.payload.product) {
+        useCartStore.getState().increment(action.payload.product);
       }
       break;
     case 'DEEP_LINK':

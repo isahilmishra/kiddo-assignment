@@ -22,6 +22,9 @@ const DynamicCollectionComponent: React.FC<Props> = ({ node }) => {
         showsHorizontalScrollIndicator={false}
         initialNumToRender={4}
         windowSize={3}
+        snapToInterval={190} // 170 width + 20 margin
+        decelerationRate="fast"
+        contentContainerStyle={{ paddingHorizontal: 8 }}
       />
     </View>
   );
@@ -33,12 +36,13 @@ export const DynamicCollection = memo(DynamicCollectionComponent, (prevProps, ne
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    marginBottom: 32,
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginHorizontal: 16,
-    marginBottom: 8,
+    fontSize: 22,
+    fontWeight: '900',
+    marginHorizontal: 20,
+    marginBottom: 12,
+    letterSpacing: -0.5,
   },
 });
