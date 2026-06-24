@@ -20,7 +20,7 @@ const RenderBlock = memo(({ block }: { block: UIBlock }) => {
   const Component = resolveComponent(block.type);
   if (!Component) return null;
   return <Component data={block} />;
-}, (prevProps, nextProps) => prevProps.block.id === nextProps.block.id);
+});
 
 export const HomeScreen = () => {
   const [activeCampaignKey, setActiveCampaignKey] = React.useState<keyof typeof campaigns>('BACK_TO_SCHOOL');
@@ -31,7 +31,7 @@ export const HomeScreen = () => {
       <SafeAreaView style={{ flex: 1, backgroundColor: activeCampaign.theme.background }}>
         
         {/* Header */}
-        <View style={styles.header}>
+        <View style={[styles.header, { backgroundColor: activeCampaign.theme.background }]}>
           <Text style={[styles.headerText, { color: activeCampaign.theme.text }]}>Kiddo</Text>
           <View style={styles.cartButton}>
             <Text style={[styles.cartButtonText, { color: activeCampaign.theme.text }]}>Cart</Text>

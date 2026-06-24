@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { DynamicCollectionBlock as DynamicCollectionNode } from '../../types/schema';
 import { ProductCard } from '../ui/ProductCard';
 
+const ITEM_WIDTH = 190;
+
 interface Props {
   node: DynamicCollectionNode;
 }
@@ -15,12 +17,10 @@ const DynamicCollectionComponent: React.FC<Props> = ({ node }) => {
         data={node.items}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ProductCard product={item} />}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
+        horizontal
         nestedScrollEnabled={true}
-        getItemLayout={(data, index) => (
-          { length: 190, offset: 190 * index, index }
-        )}
+        showsHorizontalScrollIndicator={false}
+        getItemLayout={(_, index) => ({ length: ITEM_WIDTH, offset: ITEM_WIDTH * index, index })}
         initialNumToRender={4}
         windowSize={3}
         snapToInterval={190} // 170 width + 20 margin

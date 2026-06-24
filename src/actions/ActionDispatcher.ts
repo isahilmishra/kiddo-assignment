@@ -1,30 +1,27 @@
-import { ActionPayload } from '../types/actions';
-import { useUIStore } from '../store/uiStore';
-import { Alert, Platform } from 'react-native';
+import { CartAction } from '../context/CartContext';
+import { Dispatch } from 'react';
 
-const showAlert = (title: string, message: string) => {
-  if (Platform.OS === 'web') {
-    window.alert(`${title}\n${message}`);
-  } else {
-    Alert.alert(title, message);
-  }
-};
+export type ActionPayload =
+  | { type: 'ADD_TO_CART'; payload: { id: string } }
+  | { type: 'DEEP_LINK'; payload: { url: string } }
+  | { type: 'APPLY_MYSTERY_GIFT_COUPON'; payload: { id: string; code: string } }
+  | { type: string; payload: Record<string, unknown> };
 
-export const handleAction = (action: ActionPayload, cartDispatch?: Function) => {
+export const handleAction = (
+  action: ActionPayload,
+  cartDispatch?: Dispatch<CartAction>
+): void => {
   switch (action.type) {
     case 'ADD_TO_CART':
-      if (cartDispatch) {
-        cartDispatch({ type: 'ADD', id: action.payload.id });
-      }
+      cartDispatch?.({ type: 'ADD', id: (action.payload as { id: string }).id });
       break;
     case 'DEEP_LINK':
-      showAlert('Deep Link Triggered', `Navigating to: ${action.payload.url}`);
+      console.log('[DeepLink]', (action.payload as { url: string }).url);
       break;
     case 'APPLY_MYSTERY_GIFT_COUPON':
-      useUIStore.getState().triggerOverlay();
-      showAlert('Mystery Coupon!', 'Your mystery gift coupon has been successfully applied to your cart!');
+      console.log('[Coupon Applied]', action.payload);
       break;
     default:
-      console.warn('[ActionDispatcher] Unknown action type:', action.type);
+      console.warn('[ActionDispatcher] Unhandled action type:', action.type);
   }
 };

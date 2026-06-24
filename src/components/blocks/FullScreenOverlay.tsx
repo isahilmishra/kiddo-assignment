@@ -24,7 +24,10 @@ const FullScreenOverlayComponent: React.FC<Props> = ({ node }) => {
   if (!animationSource) return null;
 
   return (
-    <View style={styles.overlay} pointerEvents="none">
+    <View 
+      style={[StyleSheet.absoluteFillObject, { zIndex: 999 }]}
+      pointerEvents="none"
+    >
       <LottieView
         source={animationSource}
         autoPlay={true}

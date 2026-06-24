@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { useCartState } from '../context/CartContext';
+import { useCartState } from '../../context/CartContext';
 
 export const CartBadge = () => {
   const { items } = useCartState();

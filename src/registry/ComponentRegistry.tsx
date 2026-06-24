@@ -2,11 +2,17 @@ import React from 'react';
 import { BannerHero } from '../components/blocks/BannerHeroBlock';
 import { ProductGrid } from '../components/blocks/ProductGrid2x2Block';
 import { DynamicCollection } from '../components/blocks/DynamicCollectionBlock';
+import { UIBlock, BannerHeroBlock, ProductGrid2x2Block, DynamicCollectionBlock } from '../types/schema';
 
-const ComponentRegistry: Record<string, React.ComponentType<{ data: any }>> = {
-  BANNER_HERO: (props) => <BannerHero node={props.data} />,
-  PRODUCT_GRID_2X2: (props) => <ProductGrid node={props.data} />,
-  DYNAMIC_COLLECTION: (props) => <DynamicCollection node={props.data} />,
+const BannerHeroWrapper: React.FC<{ data: UIBlock }> = ({ data }) => <BannerHero node={data as BannerHeroBlock} />;
+const ProductGridWrapper: React.FC<{ data: UIBlock }> = ({ data }) => <ProductGrid node={data as ProductGrid2x2Block} />;
+const DynamicCollectionWrapper: React.FC<{ data: UIBlock }> = ({ data }) => <DynamicCollection node={data as DynamicCollectionBlock} />;
+
+const ComponentRegistry: Record<string, React.ComponentType<{ data: UIBlock }>> = {
+  BANNER_HERO: BannerHeroWrapper,
+  PRODUCT_GRID_2X2: ProductGridWrapper,
+  DYNAMIC_COLLECTION: DynamicCollectionWrapper,
 };
 
-export const resolveComponent = (type: string) => ComponentRegistry[type] ?? null;
+export const resolveComponent = (type: string): React.ComponentType<{ data: UIBlock }> | null =>
+  ComponentRegistry[type] ?? null;
