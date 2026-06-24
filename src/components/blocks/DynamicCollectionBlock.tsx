@@ -25,7 +25,7 @@ const DynamicCollectionComponent: React.FC<Props> = ({ node }) => {
         windowSize={3}
         snapToInterval={190} // 170 width + 20 margin
         decelerationRate="fast"
-        contentContainerStyle={{ paddingHorizontal: 8 }}
+        contentContainerStyle={{ paddingHorizontal: 8, flexGrow: 1, justifyContent: 'center' }}
       />
     </View>
   );
