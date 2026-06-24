@@ -1,6 +1,4 @@
-import { ActionSchema } from '../types/schema';
-import { useCartStore } from '../store/cartStore';
-import { useUIStore } from '../store/uiStore';
+import { ActionPayload } from '../types/actions';
 import { Alert, Platform } from 'react-native';
 
 const showAlert = (title: string, message: string) => {
@@ -11,23 +9,20 @@ const showAlert = (title: string, message: string) => {
   }
 };
 
-export const handleAction = (action?: ActionSchema) => {
-  if (!action) return;
-
+export const handleAction = (action: ActionPayload, cartDispatch?: Function) => {
   switch (action.type) {
     case 'ADD_TO_CART':
-      if (action.payload.product) {
-        useCartStore.getState().increment(action.payload.product);
+      if (cartDispatch) {
+        cartDispatch({ type: 'ADD', id: action.payload.id });
       }
       break;
     case 'DEEP_LINK':
       showAlert('Deep Link Triggered', `Navigating to: ${action.payload.url}`);
       break;
     case 'APPLY_MYSTERY_GIFT_COUPON':
-      useUIStore.getState().triggerOverlay();
       showAlert('Mystery Coupon!', 'Your mystery gift coupon has been successfully applied to your cart!');
       break;
     default:
-      console.warn('Unhandled action type:', action.type);
+      console.warn('[ActionDispatcher] Unknown action type:', action.type);
   }
 };

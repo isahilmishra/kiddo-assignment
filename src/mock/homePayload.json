@@ -1,0 +1,34 @@
+{
+  "theme": { "primary": "#FF9933", "secondary": "#FFD700", "background": "#FFF5E6", "text": "#1A1A1A" },
+  "active_campaign": "BACK_TO_SCHOOL",
+  "blocks": [
+    {
+      "id": "block_1",
+      "type": "BANNER_HERO",
+      "image_url": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200",
+      "title": "Back to School Sale",
+      "subtitle": "Up to 50% off",
+      "action": { "type": "DEEP_LINK", "payload": { "url": "/campaign/back-to-school" } }
+    },
+    {
+      "id": "block_2",
+      "type": "PRODUCT_GRID_2X2",
+      "products": [
+        { "id": "p1", "name": "Lunchbox", "price": 299, "image_url": "https://images.unsplash.com/photo-1596755458022-b5e1b26f53da?w=400", "action": { "type": "ADD_TO_CART", "payload": { "id": "p1" } } },
+        { "id": "p2", "name": "Water Bottle", "price": 199, "image_url": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400", "action": { "type": "ADD_TO_CART", "payload": { "id": "p2" } } },
+        { "id": "p3", "name": "School Bag", "price": 799, "image_url": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400", "action": { "type": "DEEP_LINK", "payload": { "url": "/product/p3" } } },
+        { "id": "p4", "name": "Pencil Kit", "price": 99, "image_url": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?w=400", "action": { "type": "ADD_TO_CART", "payload": { "id": "p4" } } }
+      ]
+    },
+    {
+      "id": "block_3",
+      "type": "DYNAMIC_COLLECTION",
+      "theme_label": "Snacks under ₹99",
+      "items": [
+        { "id": "c1", "name": "Mango Bites", "price": 49, "image_url": "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=400", "action": { "type": "ADD_TO_CART", "payload": { "id": "c1" } } },
+        { "id": "c2", "name": "Apple Chips", "price": 79, "image_url": "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400", "action": { "type": "ADD_TO_CART", "payload": { "id": "c2" } } }
+      ]
+    },
+    { "id": "block_x", "type": "NEW_COMPONENT_V2", "data": {} }
+  ]
+}

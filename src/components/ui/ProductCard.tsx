@@ -1,19 +1,17 @@
 import React, { memo } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { ProductNode } from '../types/schema';
-import { useTheme } from '../theme/ThemeContext';
-import { handleAction } from '../dispatcher/ActionDispatcher';
-import { useCartStore } from '../store/cartStore';
+import { ProductItem } from '../../types/schema';
+import { useTheme } from '../../context/ThemeContext';
+import { handleAction } from '../../actions/ActionDispatcher';
+import { useCartDispatch } from '../../context/CartContext';
 
 interface Props {
-  product: ProductNode;
+  product: ProductItem;
 }
 
 const ProductCardComponent: React.FC<Props> = ({ product }) => {
   const theme = useTheme();
-  const quantity = useCartStore((state) => state.items[product.id]?.quantity || 0);
-  const increment = useCartStore((state) => state.increment);
-  const decrement = useCartStore((state) => state.decrement);
+  const dispatch = useCartDispatch();
 
   return (
     <View style={[styles.card, { backgroundColor: theme.card }]}>
@@ -26,24 +24,12 @@ const ProductCardComponent: React.FC<Props> = ({ product }) => {
       </View>
       
       <View style={styles.actionContainer}>
-        {quantity > 0 ? (
-          <View style={styles.quantityContainer}>
-            <TouchableOpacity onPress={() => decrement(product.id)} style={[styles.qtyBtn, { borderColor: theme.primary }]}>
-              <Text style={[styles.qtyBtnText, { color: theme.primary }]}>-</Text>
-            </TouchableOpacity>
-            <Text style={[styles.quantityText, { color: theme.text }]}>{quantity}</Text>
-            <TouchableOpacity onPress={() => increment(product)} style={[styles.qtyBtn, { backgroundColor: theme.primary }]}>
-              <Text style={[styles.qtyBtnText, { color: '#fff' }]}>+</Text>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <TouchableOpacity 
-            style={[styles.button, { backgroundColor: theme.primary }]}
-            onPress={() => handleAction({ ...product.action!, payload: { ...product.action?.payload, product } })}
-          >
-            <Text style={styles.buttonText}>Add to Cart</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity 
+          style={[styles.button, { backgroundColor: theme.primary }]}
+          onPress={() => handleAction({ ...product.action!, payload: { ...product.action?.payload, id: product.id } }, dispatch)}
+        >
+          <Text style={styles.buttonText}>Add to Cart</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

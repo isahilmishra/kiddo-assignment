@@ -1,25 +1,26 @@
 import React, { memo } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { DynamicCollectionNode } from '../types/schema';
-import { ProductCard } from './ProductCard';
-import { useTheme } from '../theme/ThemeContext';
+import { DynamicCollectionBlock as DynamicCollectionNode } from '../../types/schema';
+import { ProductCard } from '../ui/ProductCard';
 
 interface Props {
   node: DynamicCollectionNode;
 }
 
 const DynamicCollectionComponent: React.FC<Props> = ({ node }) => {
-  const theme = useTheme();
-
   return (
     <View style={styles.container}>
-      <Text style={[styles.title, { color: theme.text }]}>{node.title}</Text>
+      <Text style={styles.title}>{node.theme_label}</Text>
       <FlatList
         data={node.items}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ProductCard product={item} />}
-        horizontal
+        horizontal={true}
         showsHorizontalScrollIndicator={false}
+        nestedScrollEnabled={true}
+        getItemLayout={(data, index) => (
+          { length: 190, offset: 190 * index, index }
+        )}
         initialNumToRender={4}
         windowSize={3}
         snapToInterval={190} // 170 width + 20 margin

@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { ProductGridNode } from '../types/schema';
-import { ProductCard } from './ProductCard';
+import { ProductGrid2x2Block as ProductGridNode } from '../../types/schema';
+import { ProductCard } from '../ui/ProductCard';
 
 interface Props {
   node: ProductGridNode;
@@ -9,7 +9,7 @@ interface Props {
 
 const ProductGridComponent: React.FC<Props> = ({ node }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.grid}>
       {node.products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
@@ -22,11 +22,11 @@ export const ProductGrid = memo(ProductGridComponent, (prevProps, nextProps) => 
 });
 
 const styles = StyleSheet.create({
-  container: {
+  grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    paddingHorizontal: 8,
-    marginBottom: 16,
-  },
+    justifyContent: 'center',
+    paddingHorizontal: 10,
+    marginVertical: 16,
+  }
 });
