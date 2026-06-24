@@ -2,13 +2,16 @@ import React, { memo } from 'react';
 import { StyleSheet, View, Platform } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { FullScreenOverlayNode } from '../types/schema';
+import { useUIStore } from '../store/uiStore';
 
 interface Props {
   node?: FullScreenOverlayNode;
 }
 
 const FullScreenOverlayComponent: React.FC<Props> = ({ node }) => {
-  if (!node || !node.animation_url) return null;
+  const { isOverlayActive, hideOverlay } = useUIStore();
+
+  if (!node || !node.animation_url || !isOverlayActive) return null;
 
   // Since web throws CORS 403 on remote lottie.host JSONs, we'll map known strings to the local files we just grabbed
   let animationSource;
@@ -24,8 +27,9 @@ const FullScreenOverlayComponent: React.FC<Props> = ({ node }) => {
     <View style={styles.overlay} pointerEvents="none">
       <LottieView
         source={animationSource}
-        autoPlay
-        loop
+        autoPlay={true}
+        loop={false}
+        onAnimationFinish={hideOverlay}
         style={styles.animation}
       />
     </View>
