@@ -15,7 +15,7 @@ const ProductCardComponent: React.FC<Props> = ({ product }) => {
 
   return (
     <View style={[styles.card, { backgroundColor: theme.card }]}>
-      <Image source={{ uri: product.imageUrl }} style={styles.image} />
+      <Image source={{ uri: product.image_url }} style={styles.image} />
       <View style={styles.infoContainer}>
         <Text style={[styles.name, { color: theme.text }]} numberOfLines={1}>
           {product.name}
