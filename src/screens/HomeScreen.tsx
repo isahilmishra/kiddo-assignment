@@ -9,6 +9,7 @@ import { summerPlayhouseCampaign } from '../campaigns/summerPlayhouse';
 import { mysteryGiftCarnivalCampaign } from '../campaigns/mysteryGiftCarnival';
 import { FullScreenOverlay } from '../components/blocks/FullScreenOverlay';
 import { CartBadge } from '../components/ui/CartBadge';
+import { CartModal } from '../components/ui/CartModal';
 
 const campaigns = {
   BACK_TO_SCHOOL: backToSchoolCampaign,
@@ -24,6 +25,7 @@ const RenderBlock = memo(({ block }: { block: UIBlock }) => {
 
 export const HomeScreen = () => {
   const [activeCampaignKey, setActiveCampaignKey] = React.useState<keyof typeof campaigns>('BACK_TO_SCHOOL');
+  const [isCartVisible, setIsCartVisible] = React.useState(false);
   const activeCampaign = campaigns[activeCampaignKey];
 
   return (
@@ -37,7 +39,7 @@ export const HomeScreen = () => {
             <Text style={[styles.headerText, { color: activeCampaign.theme.text }]}>Kiddo</Text>
             <TouchableOpacity 
               style={styles.cartButton}
-              onPress={() => Alert.alert('Cart', 'Cart screen navigation coming soon!')}
+              onPress={() => setIsCartVisible(true)}
             >
               <Text style={[styles.cartButtonText, { color: activeCampaign.theme.text }]}>Cart</Text>
               <CartBadge />
@@ -72,6 +74,12 @@ export const HomeScreen = () => {
         {/* Overlay Engine */}
         <FullScreenOverlay node={{ id: 'overlay-engine', type: 'FULL_SCREEN_OVERLAY', animation_url: activeCampaignKey === 'SUMMER_PLAYHOUSE' ? 'water' : 'confetti' }} />
 
+        {/* Cart Modal */}
+        <CartModal 
+          visible={isCartVisible} 
+          onClose={() => setIsCartVisible(false)} 
+          campaign={activeCampaign} 
+        />
       </SafeAreaView>
     </ThemeProvider>
   );

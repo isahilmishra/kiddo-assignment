@@ -19,7 +19,9 @@ export const handleAction = (
       console.log('[DeepLink]', (action.payload as { url: string }).url);
       break;
     case 'APPLY_MYSTERY_GIFT_COUPON':
-      console.log('[Coupon Applied]', action.payload);
+      const couponPayload = action.payload as { id: string; code: string };
+      console.log('[Coupon Applied]', couponPayload);
+      cartDispatch?.({ type: 'ADD', id: couponPayload.id });
       break;
     default:
       console.warn('[ActionDispatcher] Unhandled action type:', action.type);
