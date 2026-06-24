@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, SafeAreaView } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text, SafeAreaView, Alert } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { resolveComponent } from '../registry/ComponentRegistry';
 import { UIBlock, HomePayload } from '../types/schema';
@@ -35,10 +35,13 @@ export const HomeScreen = () => {
           {/* Header */}
           <View style={[styles.header, { backgroundColor: activeCampaign.theme.background }]}>
             <Text style={[styles.headerText, { color: activeCampaign.theme.text }]}>Kiddo</Text>
-            <View style={styles.cartButton}>
+            <TouchableOpacity 
+              style={styles.cartButton}
+              onPress={() => Alert.alert('Cart', 'Cart screen navigation coming soon!')}
+            >
               <Text style={[styles.cartButtonText, { color: activeCampaign.theme.text }]}>Cart</Text>
               <CartBadge />
-            </View>
+            </TouchableOpacity>
           </View>
 
           {/* Campaign Switcher */}
