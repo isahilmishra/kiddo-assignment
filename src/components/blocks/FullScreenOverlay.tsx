@@ -25,11 +25,10 @@ const FullScreenOverlayComponent: React.FC<Props> = ({ node }) => {
 
   return (
     <View 
-      style={[StyleSheet.absoluteFillObject, { zIndex: 999 }]}
+      style={[StyleSheet.absoluteFill, { zIndex: 999 }]}
       pointerEvents="none"
     >
       <LottieView
-        pointerEvents="none"
         source={animationSource}
         autoPlay={true}
         loop={false}
@@ -40,13 +39,11 @@ const FullScreenOverlayComponent: React.FC<Props> = ({ node }) => {
   );
 };
 
-export const FullScreenOverlay = memo(FullScreenOverlayComponent, (prevProps, nextProps) => {
-  return prevProps.node?.id === nextProps.node?.id;
-});
+export const FullScreenOverlay = memo(FullScreenOverlayComponent);
 
 const styles = StyleSheet.create({
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     zIndex: 9999,
   },
   animation: {

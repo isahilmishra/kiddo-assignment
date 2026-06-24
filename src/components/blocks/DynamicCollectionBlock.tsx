@@ -23,7 +23,7 @@ const DynamicCollectionComponent: React.FC<Props> = ({ node }) => {
         getItemLayout={(_, index) => ({ length: ITEM_WIDTH, offset: ITEM_WIDTH * index, index })}
         initialNumToRender={4}
         windowSize={3}
-        snapToInterval={190} // 170 width + 20 margin
+        snapToInterval={ITEM_WIDTH} // 170 width + 20 margin
         decelerationRate="fast"
         contentContainerStyle={{ paddingHorizontal: 8, flexGrow: 1, justifyContent: 'center' }}
       />
@@ -31,9 +31,7 @@ const DynamicCollectionComponent: React.FC<Props> = ({ node }) => {
   );
 };
 
-export const DynamicCollection = memo(DynamicCollectionComponent, (prevProps, nextProps) => {
-  return prevProps.node.id === nextProps.node.id;
-});
+export const DynamicCollection = memo(DynamicCollectionComponent);
 
 const styles = StyleSheet.create({
   container: {

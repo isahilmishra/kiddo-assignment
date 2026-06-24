@@ -14,7 +14,7 @@ const ProductCardComponent: React.FC<Props> = ({ product }) => {
   const dispatch = useCartDispatch();
 
   return (
-    <View style={[styles.card, { backgroundColor: theme.card }]}>
+    <View style={[styles.card, { backgroundColor: '#fff' }]}>
       <Image source={{ uri: product.image_url }} style={styles.image} />
       <View style={styles.infoContainer}>
         <Text style={[styles.name, { color: theme.text }]} numberOfLines={1}>

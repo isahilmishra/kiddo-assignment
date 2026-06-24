@@ -67,6 +67,7 @@ export const HomeScreen = () => {
           data={activeCampaign.blocks}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <RenderBlock block={item} />}
+          // @ts-ignore: estimatedItemSize is required by FlashList but may be missing in local types
           estimatedItemSize={250}
           showsVerticalScrollIndicator={false}
         />

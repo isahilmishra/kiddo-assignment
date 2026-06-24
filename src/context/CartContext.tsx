@@ -6,7 +6,8 @@ export interface CartState {
 
 export type CartAction = 
   | { type: 'ADD'; id: string }
-  | { type: 'REMOVE'; id: string };
+  | { type: 'REMOVE'; id: string }
+  | { type: 'CLEAR' };
 
 const initialState: CartState = { items: {} };
 
@@ -30,6 +31,8 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
       }
       return { ...state, items: newItems };
     }
+    case 'CLEAR':
+      return { items: {} };
     default:
       return state;
   }

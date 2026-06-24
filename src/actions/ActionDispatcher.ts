@@ -18,11 +18,12 @@ export const handleAction = (
     case 'DEEP_LINK':
       console.log('[DeepLink]', (action.payload as { url: string }).url);
       break;
-    case 'APPLY_MYSTERY_GIFT_COUPON':
+    case 'APPLY_MYSTERY_GIFT_COUPON': {
       const couponPayload = action.payload as { id: string; code: string };
       console.log('[Coupon Applied]', couponPayload);
       cartDispatch?.({ type: 'ADD', id: couponPayload.id });
       break;
+    }
     default:
       console.warn('[ActionDispatcher] Unhandled action type:', action.type);
   }
