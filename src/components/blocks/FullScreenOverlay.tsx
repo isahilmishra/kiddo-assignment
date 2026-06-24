@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { StyleSheet, View, Platform } from 'react-native';
 import LottieView from 'lottie-react-native';
-import { FullScreenOverlayNode } from '../types/schema';
-import { useUIStore } from '../store/uiStore';
+import { FullScreenOverlayNode } from '../../types/schema';
+import { useUIStore } from '../../store/uiStore';
 
 interface Props {
   node?: FullScreenOverlayNode;

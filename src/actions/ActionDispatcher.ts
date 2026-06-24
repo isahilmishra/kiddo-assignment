@@ -1,4 +1,5 @@
 import { ActionPayload } from '../types/actions';
+import { useUIStore } from '../store/uiStore';
 import { Alert, Platform } from 'react-native';
 
 const showAlert = (title: string, message: string) => {
@@ -20,6 +21,7 @@ export const handleAction = (action: ActionPayload, cartDispatch?: Function) => 
       showAlert('Deep Link Triggered', `Navigating to: ${action.payload.url}`);
       break;
     case 'APPLY_MYSTERY_GIFT_COUPON':
+      useUIStore.getState().triggerOverlay();
       showAlert('Mystery Coupon!', 'Your mystery gift coupon has been successfully applied to your cart!');
       break;
     default:
