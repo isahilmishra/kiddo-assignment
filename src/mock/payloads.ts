@@ -11,7 +11,7 @@ export const backToSchoolPayload: LayoutPayload = {
   overlay: {
     id: 'overlay-1',
     type: 'FULL_SCREEN_OVERLAY',
-    animation_url: '' 
+    animation_url: 'confetti' 
   },
   components: [
     {
@@ -58,7 +58,7 @@ export const summerPlayhousePayload: LayoutPayload = {
   overlay: {
     id: 'overlay-2',
     type: 'FULL_SCREEN_OVERLAY',
-    animation_url: ''
+    animation_url: 'water'
   },
   components: [
     {
@@ -93,7 +93,7 @@ export const mysteryGiftPayload: LayoutPayload = {
   overlay: {
     id: 'overlay-3',
     type: 'FULL_SCREEN_OVERLAY',
-    animation_url: ''
+    animation_url: 'confetti'
   },
   components: [
     {
