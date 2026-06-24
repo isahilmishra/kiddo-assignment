@@ -1,11 +1,11 @@
 import React, { memo } from 'react';
 import { View, StyleSheet, FlatList, TouchableOpacity, Text, SafeAreaView } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
-import { resolveComponent } from '../../registry/ComponentRegistry';
-import { UIBlock, HomePayload } from '../../types/schema';
-import { ThemeProvider, useTheme } from '../../context/ThemeContext';
-import { backToSchoolCampaign } from '../../campaigns/backToSchool';
-import { summerPlayhouseCampaign } from '../../campaigns/summerPlayhouse';
+import { resolveComponent } from '../registry/ComponentRegistry';
+import { UIBlock, HomePayload } from '../types/schema';
+import { ThemeProvider, useTheme } from '../context/ThemeContext';
+import { backToSchoolCampaign } from '../campaigns/backToSchool';
+import { summerPlayhouseCampaign } from '../campaigns/summerPlayhouse';
 import { mysteryGiftCarnivalCampaign } from '../campaigns/mysteryGiftCarnival';
 import { FullScreenOverlay } from '../components/blocks/FullScreenOverlay';
 import { CartBadge } from '../components/ui/CartBadge';
