@@ -30,28 +30,31 @@ export const HomeScreen = () => {
     <ThemeProvider theme={activeCampaign.theme}>
       <SafeAreaView style={{ flex: 1, backgroundColor: activeCampaign.theme.background }}>
         
-        {/* Header */}
-        <View style={[styles.header, { backgroundColor: activeCampaign.theme.background }]}>
-          <Text style={[styles.headerText, { color: activeCampaign.theme.text }]}>Kiddo</Text>
-          <View style={styles.cartButton}>
-            <Text style={[styles.cartButtonText, { color: activeCampaign.theme.text }]}>Cart</Text>
-            <CartBadge />
+        {/* Interactive Top Section (Above Overlay) */}
+        <View style={{ zIndex: 1000 }}>
+          {/* Header */}
+          <View style={[styles.header, { backgroundColor: activeCampaign.theme.background }]}>
+            <Text style={[styles.headerText, { color: activeCampaign.theme.text }]}>Kiddo</Text>
+            <View style={styles.cartButton}>
+              <Text style={[styles.cartButtonText, { color: activeCampaign.theme.text }]}>Cart</Text>
+              <CartBadge />
+            </View>
           </View>
-        </View>
 
-        {/* Campaign Switcher */}
-        <View style={styles.switcher}>
-          {(Object.keys(campaigns) as Array<keyof typeof campaigns>).map((key) => (
-            <TouchableOpacity 
-              key={key} 
-              style={[styles.tabBtn, activeCampaignKey === key && { backgroundColor: activeCampaign.theme.primary }]}
-              onPress={() => setActiveCampaignKey(key)}
-            >
-              <Text style={[styles.tabBtnText, activeCampaignKey === key && { color: '#fff' }]}>
-                {key.replace(/_/g, ' ')}
-              </Text>
-            </TouchableOpacity>
-          ))}
+          {/* Campaign Switcher */}
+          <View style={styles.switcher}>
+            {(Object.keys(campaigns) as Array<keyof typeof campaigns>).map((key) => (
+              <TouchableOpacity 
+                key={key} 
+                style={[styles.tabBtn, activeCampaignKey === key && { backgroundColor: activeCampaign.theme.primary }]}
+                onPress={() => setActiveCampaignKey(key)}
+              >
+                <Text style={[styles.tabBtnText, activeCampaignKey === key && { color: '#fff' }]}>
+                  {key.replace(/_/g, ' ')}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
 
         {/* Master FlashList Feed */}

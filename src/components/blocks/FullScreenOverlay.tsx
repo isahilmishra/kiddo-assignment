@@ -29,6 +29,7 @@ const FullScreenOverlayComponent: React.FC<Props> = ({ node }) => {
       pointerEvents="none"
     >
       <LottieView
+        pointerEvents="none"
         source={animationSource}
         autoPlay={true}
         loop={false}
