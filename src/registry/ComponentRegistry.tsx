@@ -1,21 +1,12 @@
 import React from 'react';
-import { BannerHero } from '../components/BannerHero';
-import { ProductGrid } from '../components/ProductGrid';
-import { DynamicCollection } from '../components/DynamicCollection';
-import { UINode } from '../types/schema';
+import { BannerHero } from '../components/blocks/BannerHeroBlock';
+import { ProductGrid } from '../components/blocks/ProductGrid2x2Block';
+import { DynamicCollection } from '../components/blocks/DynamicCollectionBlock';
 
-// Factory Map
-const registry: Record<string, React.FC<{ node: any }>> = {
-  BANNER_HERO: BannerHero,
-  PRODUCT_GRID_2X2: ProductGrid,
-  DYNAMIC_COLLECTION: DynamicCollection,
+const ComponentRegistry: Record<string, React.ComponentType<{ data: any }>> = {
+  BANNER_HERO: (props) => <BannerHero node={props.data} />,
+  PRODUCT_GRID_2X2: (props) => <ProductGrid node={props.data} />,
+  DYNAMIC_COLLECTION: (props) => <DynamicCollection node={props.data} />,
 };
 
-export const renderNode = (node: UINode) => {
-  const Component = registry[node.type];
-  if (!Component) {
-    console.warn(`Unrecognized component type: ${node.type}`);
-    return null; // Fail gracefully
-  }
-  return <Component key={node.id} node={node} />;
-};
+export const resolveComponent = (type: string) => ComponentRegistry[type] ?? null;
