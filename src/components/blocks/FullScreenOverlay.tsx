@@ -16,9 +16,9 @@ const FullScreenOverlayComponent: React.FC<Props> = ({ node }) => {
   // Since web throws CORS 403 on remote lottie.host JSONs, we'll map known strings to the local files we just grabbed
   let animationSource;
   if (node.animation_url.includes('confetti')) {
-    animationSource = require('../assets/confetti.json');
+    animationSource = require('../../assets/confetti.json');
   } else if (node.animation_url.includes('water')) {
-    animationSource = require('../assets/water.json');
+    animationSource = require('../../assets/water.json');
   }
 
   if (!animationSource) return null;
